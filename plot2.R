@@ -17,7 +17,7 @@ pd$Global_intensity <- as.numeric(pd$Global_intensity)
 
 pd$dtm <- as.POSIXct(paste(pd$Date, pd$Time), format="%Y-%m-%d %H:%M:%S")
 
-with(pd,lines(dtm,Global_active_power, xlab=" ", ylab="Global Active Power (kilowatts)"))
+with(pd,lines(dtm,Global_active_power, xlab="", ylab="Global Active Power (kilowatts)"))
 
 dev.copy(png,file="plot2.png", width=480, height=480, units = "px")
 
