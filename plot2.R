@@ -15,11 +15,11 @@ pd$Sub_metering_1 <- as.numeric(pd$Sub_metering_1)
 pd$Sub_metering_2 <-as.numeric(pd$Sub_metering_2)
 pd$Global_intensity <- as.numeric(pd$Global_intensity)
 
-pd$dtm <- as.POSIXct(paste(pd$Date, pd$Time), format="%Y-%m-%d %H:%M:%S")
+pd$dtm <- strptime(paste(pd$Date, pd$Time), format="%Y-%m-%d %H:%M:%S")
 
-with(pd,lines(dtm,Global_active_power, xlab="", ylab="Global Active Power (kilowatts)"))
+png(file="plot2.png", width=480, height=480)
 
-dev.copy(png,file="plot2.png", width=480, height=480, units = "px")
+plot(pd$dtm,pd$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)")
 
 dev.off()
 

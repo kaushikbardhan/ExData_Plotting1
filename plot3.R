@@ -15,17 +15,14 @@ pd$Sub_metering_1 <- as.numeric(pd$Sub_metering_1)
 pd$Sub_metering_2 <-as.numeric(pd$Sub_metering_2)
 pd$Global_intensity <- as.numeric(pd$Global_intensity)
 
-pd$dtm <- as.POSIXct(paste(pd$Date, pd$Time), format="%Y-%m-%d %H:%M:%S")
+pd$dtm <- strptime(paste(pd$Date, pd$Time), format="%Y-%m-%d %H:%M:%S")
 
-with(pd, plot(dtm,Sub_metering_1,ylab = "Energy sub metering",type="n"))
-with(pd, lines(dtm,Sub_metering_1, col="black")) 
+png(file="plot3.png", width=480, height=480)
+with(pd, plot(dtm,Sub_metering_1, col="black",xlab="", ylab = "Energy sub metering",type="l")) 
 with(pd, lines(dtm,Sub_metering_2, col="red")) 
 with(pd, lines(dtm,Sub_metering_3, col="blue"))
-legend("topright",lty=1 , lwd=1, col = c("black","red", "blue"), 
+legend("topright", lwd=1, col = c("black","red", "blue"), 
        legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
-
-
-dev.copy(png,file="plot3.png", width=480, height=480, units = "px")
 
 dev.off()
 
